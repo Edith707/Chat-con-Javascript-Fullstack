@@ -3,6 +3,8 @@ const express = require("express");
 
 const http = require("http");
 
+const path = require("path");
+
 // usando websoquets.io despues de instalarlo
  const socketio = require("socket.io");
 
@@ -13,16 +15,14 @@ const server= http.createServer(app);
 //soquet escucha en el servidor creado 
  const io = socketio.listen(server);
 
-io.on("connection", socket => {
-    console.log("Un nuevo usuario se ha conectado")
-})
+ 
+require("./sockets")(io);
 
-
-
-//enviando el html en la carpeta public al servidos, ENVIANDO ARCHIVOS ESTATICOS
-app.use(express.static("public"));
+//enviando el html en la direccion que queremos, ENVIANDO ARCHIVOS ESTATICOS
+app.use(express.static(path.join(__dirname, "public")));
 
 //definiendo el puero de nuestro servidor EMPEZANDO EL SERVIDOR
-app.listen(3000, () => {
+server.listen(3000, () => {
     console.log("server on port 3000");
 });
+

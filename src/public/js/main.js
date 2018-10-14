@@ -1,0 +1,2 @@
+//ejecutando socket
+io();
