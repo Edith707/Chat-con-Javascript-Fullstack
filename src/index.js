@@ -15,14 +15,17 @@ const server= http.createServer(app);
 //soquet escucha en el servidor creado 
  const io = socketio.listen(server);
 
- 
+ //settings
+ app.set("port", process.env.PORT || 3000);
+
+ //requiero de sockets
 require("./sockets")(io);
 
 //enviando el html en la direccion que queremos, ENVIANDO ARCHIVOS ESTATICOS
 app.use(express.static(path.join(__dirname, "public")));
 
 //definiendo el puero de nuestro servidor EMPEZANDO EL SERVIDOR
-server.listen(3000, () => {
-    console.log("server on port 3000");
+server.listen(app.get("port"), () => {
+    console.log("server on port", app.get("port"));
 });
 

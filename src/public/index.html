@@ -5,11 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chat Javascript Fullstack</title>
-    <link rel="stylesheet" href="css/main.css">
+    <!--Agragando bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <!--Agregando googlefonts-->
     <link href="https://fonts.googleapis.com/css?family=Mali:500i|Niramit" rel="stylesheet">
-</head>
+    <!--Link de estilos-->
+    <link rel="stylesheet" href="css/main.css">
+  </head>
 <body>
-  <h1>Your code here!</h1>
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand mx-auto" href="/">Javascript Fullstack Chat</a>
+  </nav>
+  <div class="container">
+    <div class="col-md-6 mt-4">
+       <div class="card">
+         <div class="card-header">
+           <h4>Letś Chat</h4>
+         </div>
+         <div id= "chat"class="card-body">
+         
+         </div>
+         <form id= "message-form" class="card-footer">
+            <div class="input-group">
+                <input type= "text" id="message" class="form-control">
+                <div class="input-group-append">
+                   <input type="submit" class="btn btn-secondary">
+                </div>
+            </div>
+         </form>
+       </div>
+    </div>
+  </div>
+  <!--Agregando Jquery-->
+  <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+  <!--Agregando vinculo de socket.io y js-->
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/main.js"></script>
 </body>
