@@ -27,7 +27,7 @@ $(function () {
                 `<div class="alert alert-danger">
                   El nombre de usuario ya Existe.
                 </div>
-              `);   
+                `);   
               }
               $nickName.val("");
          });
@@ -43,7 +43,15 @@ $(function () {
 
      //recibiendo el new message
      socket.on("new message", function(data){
-       $chat.append(data + "<br/>clear");
+       $chat.append('<b>' + data.nick + '</b>: ' + data.msg + '<br/>' );
      });
+    
+     socket.on("users", data => {
+      let html = "";
+      for(let i=0; i < data.length; i++ ){
+          html += `<p><i class="fas fa-user"></i> ${data[i]}</p>`;
+      }
+      $users.html(html);
+  });
 
 })
