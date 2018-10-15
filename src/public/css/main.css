@@ -8,14 +8,9 @@ body{
 
 }
 
-body>h1 {
-    font-family: 'Mali', cursive;
+.font{
+    font-size: 12pt;
 }
-
-body>section, body>div{
-
-    font-family: 'Niramit', sans-serif;
-
+#contentWrap{
+    display: none;
 }
-
-

@@ -7,17 +7,31 @@
     <title>Chat Javascript Fullstack</title>
     <!--Agragando bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <!--Agregando googlefonts-->
-    <link href="https://fonts.googleapis.com/css?family=Mali:500i|Niramit" rel="stylesheet">
+    <!--Link de font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!--Link de estilos-->
     <link rel="stylesheet" href="css/main.css">
+   
   </head>
 <body>
   <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand mx-auto" href="/">Javascript Fullstack Chat</a>
   </nav>
-  <div class="container">
-    <div class="col-md-6 mt-4">
+  <div class="card col-md-4 mt-5 mx-auto" id="logIn">
+    <div class="card-header">
+        <h3 class="font">Ingresa Nombre de usuario</h3>
+    </div>
+    <p id="nickError"></p>
+    <div class="card-body">
+      <form id="nickForm" >
+        <input type="text" id="nickName" class="form-control">
+        <button type="submit"  class="btn btn-info btn-sm mt-2"> <i class="fas fa-arrow-alt-circle-right"></i>  Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container" id="contentWrap">
+    <div class="col-md-6 offset-md-1 mt-4">
        <div class="card">
          <div class="card-header">
            <h4>Letś Chat</h4>
@@ -29,11 +43,21 @@
             <div class="input-group">
                 <input type= "text" id="message" class="form-control">
                 <div class="input-group-append">
-                   <input type="submit" class="btn btn-secondary">
+                   <button type="submit" class="btn btn-secondary"><i class="fas fa-arrow-alt-circle-right"></i>  Enviar</button>
                 </div>
             </div>
          </form>
        </div>
+    
+    </div>
+    <div class="card col-md-3">
+        <div class="card-header">
+          <h3 class="font">Usuarios</h3>
+        </div>
+        <div class="card-body">
+           <div id="usersNames">
+           </div>
+        </div>
     </div>
   </div>
   <!--Agregando Jquery-->
