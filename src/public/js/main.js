@@ -55,5 +55,9 @@ $(function () {
       }
       $users.html(html);
   });
+  //escuchando el evento whisper
 
+  socket.on("whisper", data =>{
+    $chat.append(`<p class="whisper"><b>${data.nick}:</b>${data.msg}</p>`)
+  });
 })
