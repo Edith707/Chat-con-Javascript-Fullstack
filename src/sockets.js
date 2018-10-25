@@ -1,10 +1,16 @@
+// importando la base de datos del chat 
+ const chat = require("./models/chat");
+
 //exporto soquets
 module.exports = function (io) {
     let users = {};
     //conectando a socket en tiempo real
-    io.on("connection", socket => {
+    io.on("connection", async socket => {
         console.log("Un nuevo usuario se ha conectado");
         
+        let messages = await chat.find({}).limit(8).sort('-created');
+        socket.emit("load old msgs", messages);
+
         socket.on("nuevo usuario", (data, cb) =>{
             if(data in users){
              cb(false);
@@ -17,7 +23,7 @@ module.exports = function (io) {
         });
 
         //recibiendo el mensaje de send message RECIBIENDO DATOS DEL SERVIDOR
-        socket.on("send message", (data, cb) => {
+        socket.on("send message", async (data, cb) => {
             //Analizar si tiene un prefijo para detectar mensaje privado 
             var msg = data.trim();
 
@@ -42,6 +48,13 @@ module.exports = function (io) {
                 }
 
             } else {
+                //almacenando el chat-general en la base de datos
+                var newMsg =  new chat({
+                    msg: msg,
+                    nick: socket.nickName
+                });
+                await newMsg.save();
+
                  //Retransmitiendo el mensaje recibido a mis demas usuarios
             io.sockets.emit("new message", {
                 msg: data,
@@ -52,7 +65,7 @@ module.exports = function (io) {
         });
         socket.on("disconnect", data => {
             if(!socket.nickName) return;
-            delete users[sockets.nickName];
+            delete users[socket.nickName];
             updateNickNames();
         });
 

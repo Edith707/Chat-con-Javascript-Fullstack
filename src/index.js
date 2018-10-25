@@ -8,12 +8,20 @@ const path = require("path");
 // usando websoquets.io despues de instalarlo
  const socketio = require("socket.io");
 
+ // Integrando a mongoose
+ const mongoose = require("mongoose");
+
 const app= express();
 
 //usar la app para darsela a socket
 const server= http.createServer(app);
 //soquet escucha en el servidor creado 
  const io = socketio.listen(server);
+
+//Conectando con Mongodb
+mongoose.connect("mongodb://localhost/chat-database")
+   .then(db => console.log("conectado a la base de datos"))
+   .catch(err => console.log(err));
 
  //settings
  app.set("port", process.env.PORT || 3000);
